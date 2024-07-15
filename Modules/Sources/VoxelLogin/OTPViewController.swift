@@ -1,11 +1,64 @@
 import UIKit
 import DesignSystem
+import VoxelAuthentication
 import SnapKit
+
 
 enum OTPStrings: String {
     case title = "Enter the code"
     case subtitle = "Enter the code we sent to"
     case continueButton = "Continue"
+}
+
+enum OTPViewModelError: Error {
+    case otpNotValid
+}
+
+public final class OTPViewModel {
+    
+    private var authService: AuthService
+    
+    init(authService: AuthService) {
+        self.authService = authService
+    }
+    
+    func verifyOTP(with digits: [String]) async throws {
+        
+        guard validate(digits: digits) else {
+            throw OTPViewModelError.otpNotValid
+        }
+        let otp = combineToOTP(digits: digits)
+        
+        let user = try await authService.authenticate(with: otp)
+        print(user.uid)
+    }
+    
+    private func validate(digits: [String]) -> Bool {
+        for digit in digits {
+            guard digit.isValidDigit else { return false }
+        }
+        
+        return true
+    }
+    
+    private func combineToOTP(digits: [String]) -> String {
+        digits.joined()
+    }
+}
+
+fileprivate extension String {
+    var isValidDigit: Bool {
+        guard count == 1 else { return false }
+        guard isNumber else { return false }
+        return true
+    }
+}
+
+extension String {
+    var isNumber: Bool {
+        let digitsCharacters = CharacterSet(charactersIn: "0123456789")
+        return CharacterSet(charactersIn: self).isSubset(of: digitsCharacters)
+    }
 }
 
 public final class OTPViewController: UIViewController {
@@ -15,6 +68,8 @@ public final class OTPViewController: UIViewController {
     private var textFields: [UITextField] = []
     
     var phoneNumber: String = ""
+    
+    public var viewModel: OTPViewModel!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,7 +232,7 @@ extension OTPViewController {
         let nextIndex = index + 1
         
         guard nextIndex < textFields.count else {
-            print("Execute authentication")
+            didTapContinue()
             continueBtn.alpha = 1.0
             return
         }
@@ -189,8 +244,29 @@ extension OTPViewController {
 
 extension OTPViewController {
     
+    private func setContinueBtnDisabled() {
+        continueBtn.alpha = 0.5
+        continueBtn.isEnabled = false
+    }
+    
+    private func setContinueBtnEnabled() {
+        continueBtn.alpha = 1.0
+        continueBtn.isEnabled = true
+    }
+    
     @objc func didTapContinue() {
-        print("Did tap Continue")
+        self.setContinueBtnDisabled()
+        
+        let digits = textFields.map { $0.text ?? "" }
+        
+        Task { [weak self] in
+            do {
+                try await self?.viewModel.verifyOTP(with: digits)
+            } catch {
+                self?.showError(error.localizedDescription)
+                self?.setContinueBtnEnabled()
+            }
+        }
     }
 }
 
