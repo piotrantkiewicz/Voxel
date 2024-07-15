@@ -1,40 +1,31 @@
 import UIKit
-import PhoneNumberKit
-import SnapKit
 import DesignSystem
+import SnapKit
 
-enum PhoneNumberStrings: String {
-    case title = "Enter your phone number"
-    case subtitle = "What a phone number can people use to reach you?"
+enum OTPStrings: String {
+    case title = "Enter the code"
+    case subtitle = "Enter the code we sent to"
     case continueButton = "Continue"
 }
 
-public class PhoneNumberViewController: UIViewController {
+public final class OTPViewController: UIViewController {
     
     private weak var stackView: UIStackView!
-    private weak var textField: PhoneNumberTextField!
     private weak var continueBtn: UIButton!
+    private var textFields: [UITextField] = []
+    
+    var phoneNumber: String = ""
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        subscribeToTextChange()
-        textFieldDidChange()
-        didTapContinue()
         
-        textField.becomeFirstResponder()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    private func subscribeToTextChange() {
-        NotificationCenter.default.addObserver(self, selector: #selector(textFieldDidChange), name: UITextField.textDidChangeNotification, object: self)
+        continueBtn.alpha = 0.5
+        textFields.first?.becomeFirstResponder()
     }
 }
 
-extension PhoneNumberViewController {
+extension OTPViewController {
     
     private func setupUI() {
         
@@ -44,7 +35,7 @@ extension PhoneNumberViewController {
         setupIcon()
         setupTitle()
         setupSubtitle()
-        setupTextField()
+        setupOTPTextFields()
         setupContinueButton()
     }
     
@@ -68,7 +59,7 @@ extension PhoneNumberViewController {
     private func setupIcon() {
         let icon = UIImageView()
         icon.contentMode = .scaleAspectFit
-        icon.image = UIImage(resource: .mobileEditPen)
+        icon.image = UIImage(resource: .mobileOtp)
         
         stackView.addArrangedSubview(icon)
         
@@ -81,7 +72,7 @@ extension PhoneNumberViewController {
         let title = UILabel()
         
         let attributedString = NSAttributedString(
-            string: PhoneNumberStrings.title.rawValue,
+            string: OTPStrings.title.rawValue,
             attributes: [
                 .kern: Kern.fromFigmaToiOS(figmaLetterSpacing: 0.37),
                 .paragraphStyle: UIFont.title
@@ -101,7 +92,7 @@ extension PhoneNumberViewController {
     private func setupSubtitle() {
         let subtitle = UILabel()
         let attributedString = NSAttributedString(
-            string: PhoneNumberStrings.subtitle.rawValue,
+            string: OTPStrings.subtitle.rawValue + "\n" + phoneNumber,
             attributes: [
                 .kern: Kern.fromFigmaToiOS(figmaLetterSpacing: -0.41)
             ]
@@ -115,44 +106,54 @@ extension PhoneNumberViewController {
         stackView.addArrangedSubview(subtitle)
     }
     
-    private func setupTextField() {
-        let textFieldBackground = UIView()
-        textFieldBackground.backgroundColor = .white
-        textFieldBackground.layer.cornerRadius = 8
-        textFieldBackground.layer.masksToBounds = true
-        stackView.addArrangedSubview(textFieldBackground)
-        textFieldBackground.snp.makeConstraints { make in
-            make.width.equalToSuperview()
-            make.height.equalTo(44)
+    private func setupOTPTextFields() {
+        
+        var fields = [UITextField]()
+        
+        let fieldsStackView = UIStackView()
+        fieldsStackView.axis = .horizontal
+        fieldsStackView.spacing = 16
+        fieldsStackView.alignment = .center
+        
+        for index in 0...5 {
+            let background = UIView()
+            background.backgroundColor = .white
+            background.layer.cornerRadius = 8
+            background.layer.masksToBounds = true
+            
+            let textField = UITextField()
+            textField.textAlignment = .center
+            textField.textColor = .textGray
+            textField.font = .otp
+            textField.keyboardType = .numberPad
+            textField.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
+            textField.tag = 100 + index
+            
+            background.addSubview(textField)
+            
+            background.snp.makeConstraints { make in
+                make.height.equalTo(44)
+                make.width.equalTo(44)
+            }
+            
+            textField.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
+            fieldsStackView.addArrangedSubview(background)
+            fields.append(textField)
         }
         
-        let textField = PhoneNumberTextField(
-            insets: UIEdgeInsets(top: 10, left: 8, bottom: 10, right: 8),
-            clearButtonPadding: 0
-        )
-  
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        textField.font = .textField
-        textField.textColor = .text
-        textField.withExamplePlaceholder = true
-        textField.withFlag = true
+        stackView.addArrangedSubview(fieldsStackView)
         
-        textFieldBackground.addSubview(textField)
-        
-        textField.snp.makeConstraints { make in
-            make.left.equalTo(16)
-            make.right.equalTo(-16)
-            make.centerY.equalToSuperview()
-        }
-        
-        self.textField = textField
+        textFields = fields
     }
     
     private func setupContinueButton() {
         let button = UIButton()
         button.backgroundColor = .accent
         button.titleLabel?.font = .button
-        button.setTitle(PhoneNumberStrings.continueButton.rawValue, for: .normal)
+        button.setTitle(OTPStrings.continueButton.rawValue, for: .normal)
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
@@ -168,19 +169,29 @@ extension PhoneNumberViewController {
     }
 }
 
-extension PhoneNumberViewController {
-    @objc func textFieldDidChange() {
-        continueBtn.isEnabled = textField.isValidNumber
-        continueBtn.alpha = textField.isValidNumber ? 1.0 : 0.25
+extension OTPViewController {
+    
+    @objc func didChangeText(textField: UITextField) {
+        let index = textField.tag - 100
+        
+        let nextIndex = index + 1
+        
+        guard nextIndex < textFields.count else {
+            print("Execute authentication")
+            continueBtn.alpha = 1.0
+            return
+        }
+        
+        textFields[nextIndex].becomeFirstResponder()
+        
     }
 }
 
-extension PhoneNumberViewController {
+extension OTPViewController {
     
     @objc func didTapContinue() {
-        let viewController = OTPViewController()
-        viewController.phoneNumber = textField.text ?? ""
-
-        navigationController?.pushViewController(viewController, animated: true)
+        print("Did tap Continue")
     }
 }
+
+

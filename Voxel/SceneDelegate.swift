@@ -1,5 +1,6 @@
 import UIKit
 import VoxelLogin
+import DesignSystem
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -11,6 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         let phoneNumberController = PhoneNumberViewController()
         let navigationController = UINavigationController(rootViewController: phoneNumberController)
+        
+        navigationController.styleVoxel()
+        
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
@@ -46,3 +50,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension UINavigationController {
+    func styleVoxel() {
+        navigationBar.tintColor = .accent
+        
+        let image = UIImage.chevronLeft
+        
+        navigationBar.backIndicatorImage = image
+        navigationBar.backIndicatorTransitionMaskImage = image
+        
+        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+    }
+}

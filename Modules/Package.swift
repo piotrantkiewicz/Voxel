@@ -25,6 +25,11 @@ let package = Package(
                 .process("Resources")
             ]
         ),
-        .target(name: "DesignSystem")
+        .target(
+            name: "DesignSystem",
+            resources: [
+                .process("Resources")
+            ]
+        )
     ]
 )

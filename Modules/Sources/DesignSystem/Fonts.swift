@@ -4,6 +4,7 @@ public enum Fonts: String {
     case ibmPlexSerifBold = "IBMPlexSerif-Bold"
     case ibmPlexSansRegular = "IBMPlexSans-Regular"
     case ibmPlexSansSemiBold = "IBMPlexSans-SemiBold"
+    case ibmPlexSansBold = "IBMPlexSans-Bold"
 }
 
 public extension UIFont {
@@ -21,5 +22,9 @@ public extension UIFont {
     
     static var button: UIFont {
         UIFont(name: Fonts.ibmPlexSansSemiBold.rawValue, size: 17)!
+    }
+    
+    static var otp: UIFont {
+        UIFont(name: Fonts.ibmPlexSansBold.rawValue, size: 17)!
     }
 }

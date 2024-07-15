@@ -13,6 +13,7 @@
 		AE47AA9A2C3D9F1A00704308 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AE47AA992C3D9F1A00704308 /* Base */; };
 		AE91345B2C4075F9009D8BF6 /* VoxelLogin in Frameworks */ = {isa = PBXBuildFile; productRef = AE91345A2C4075F9009D8BF6 /* VoxelLogin */; };
 		AE91345F2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */; };
+		AEA428D72C4567B800FA5165 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */; };
 		AEDEA5CD2C413EE000AAE70A /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */; };
 		AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,7 @@
 		AE47AA9B2C3D9F1A00704308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE77971E2C3E8DBE005D51B9 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Bold.ttf"; sourceTree = "<group>"; };
+		AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
 		AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */,
+				AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */,
 				AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */,
 				AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */,
 			);
@@ -161,6 +164,7 @@
 			files = (
 				AE47AA972C3D9F1A00704308 /* Assets.xcassets in Resources */,
 				AEDEA5CD2C413EE000AAE70A /* IBMPlexSans-Regular.ttf in Resources */,
+				AEA428D72C4567B800FA5165 /* IBMPlexSans-Bold.ttf in Resources */,
 				AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */,
 				AE91345F2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf in Resources */,
 				AE47AA9A2C3D9F1A00704308 /* Base in Resources */,
