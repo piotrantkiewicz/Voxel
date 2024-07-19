@@ -20,6 +20,7 @@
 		AECC86662C4A76EE00A6A39B /* VoxelCore in Frameworks */ = {isa = PBXBuildFile; productRef = AECC86652C4A76EE00A6A39B /* VoxelCore */; };
 		AECC86682C4A7E0E00A6A39B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC86672C4A7E0E00A6A39B /* TabBarController.swift */; };
 		AECC866A2C4A80E500A6A39B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC86692C4A80E500A6A39B /* Tab.swift */; };
+		AECC866D2C4AAF7B00A6A39B /* VoxelSettings in Frameworks */ = {isa = PBXBuildFile; productRef = AECC866C2C4AAF7B00A6A39B /* VoxelSettings */; };
 		AEDEA5CD2C413EE000AAE70A /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */; };
 		AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
@@ -47,6 +48,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AECC86662C4A76EE00A6A39B /* VoxelCore in Frameworks */,
+				AECC866D2C4AAF7B00A6A39B /* VoxelSettings in Frameworks */,
 				AE91345B2C4075F9009D8BF6 /* VoxelLogin in Frameworks */,
 				AEA428E02C45B3DE00FA5165 /* FirebaseAuth in Frameworks */,
 				AEA428DE2C45B3D300FA5165 /* DesignSystem in Frameworks */,
@@ -145,6 +147,7 @@
 				AEA428DD2C45B3D300FA5165 /* DesignSystem */,
 				AEA428DF2C45B3DE00FA5165 /* FirebaseAuth */,
 				AECC86652C4A76EE00A6A39B /* VoxelCore */,
+				AECC866C2C4AAF7B00A6A39B /* VoxelSettings */,
 			);
 			productName = Voxel;
 			productReference = AE47AA8A2C3D9F1900704308 /* Voxel.app */;
@@ -453,6 +456,10 @@
 		AECC86652C4A76EE00A6A39B /* VoxelCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VoxelCore;
+		};
+		AECC866C2C4AAF7B00A6A39B /* VoxelSettings */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VoxelSettings;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

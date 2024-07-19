@@ -1,5 +1,6 @@
 import UIKit
 import DesignSystem
+import VoxelSettings
 
 class TabBarController: UITabBarController {
     
@@ -25,14 +26,16 @@ class TabBarController: UITabBarController {
         let chats = UIViewController()
         chats.tabBarItem = Tab.chats.tabBarItem
         
-        let settings = UIViewController()
+        let settings = SettingsViewController()
+        let settingsNav = UINavigationController(rootViewController: settings)
         settings.tabBarItem = Tab.settings.tabBarItem
+        settings.title = Tab.settings.tabBarItem.title
         
         viewControllers = [
             contacts,
             calls,
             chats,
-            settings
+            settingsNav
         ]
     }
 }

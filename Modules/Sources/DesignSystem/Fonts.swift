@@ -16,6 +16,14 @@ public extension UIFont {
         UIFont(name: Fonts.ibmPlexSansRegular.rawValue, size: 17)!
     }
     
+    static var title2: UIFont {
+        UIFont(name: Fonts.ibmPlexSansSemiBold.rawValue, size: 17)!
+    }
+    
+    static var subtitle2: UIFont {
+        UIFont(name: Fonts.ibmPlexSansRegular.rawValue, size: 15)!
+    }
+    
     static var textField: UIFont {
         UIFont(name: Fonts.ibmPlexSansRegular.rawValue, size: 17)!
     }
