@@ -16,6 +16,8 @@
 		AEA428D72C4567B800FA5165 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */; };
 		AEA428DE2C45B3D300FA5165 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = AEA428DD2C45B3D300FA5165 /* DesignSystem */; };
 		AEA428E02C45B3DE00FA5165 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AEA428DF2C45B3DE00FA5165 /* FirebaseAuth */; };
+		AEA428E22C45E7CD00FA5165 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */; };
+		AECC86662C4A76EE00A6A39B /* VoxelCore in Frameworks */ = {isa = PBXBuildFile; productRef = AECC86652C4A76EE00A6A39B /* VoxelCore */; };
 		AEDEA5CD2C413EE000AAE70A /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */; };
 		AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,7 @@
 		AE77971E2C3E8DBE005D51B9 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Bold.ttf"; sourceTree = "<group>"; };
 		AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
+		AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
 		AEDEA5CE2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AECC86662C4A76EE00A6A39B /* VoxelCore in Frameworks */,
 				AE91345B2C4075F9009D8BF6 /* VoxelLogin in Frameworks */,
 				AEA428E02C45B3DE00FA5165 /* FirebaseAuth in Frameworks */,
 				AEA428DE2C45B3D300FA5165 /* DesignSystem in Frameworks */,
@@ -73,6 +77,7 @@
 				AE47AA8D2C3D9F1900704308 /* AppDelegate.swift */,
 				AE47AA8F2C3D9F1900704308 /* SceneDelegate.swift */,
 				AE47AA982C3D9F1A00704308 /* LaunchScreen.storyboard */,
+				AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */,
 				AE47AA9B2C3D9F1A00704308 /* Info.plist */,
 			);
 			path = Voxel;
@@ -125,6 +130,7 @@
 				AE91345A2C4075F9009D8BF6 /* VoxelLogin */,
 				AEA428DD2C45B3D300FA5165 /* DesignSystem */,
 				AEA428DF2C45B3DE00FA5165 /* FirebaseAuth */,
+				AECC86652C4A76EE00A6A39B /* VoxelCore */,
 			);
 			productName = Voxel;
 			productReference = AE47AA8A2C3D9F1900704308 /* Voxel.app */;
@@ -177,6 +183,7 @@
 				AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */,
 				AE91345F2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf in Resources */,
 				AE47AA9A2C3D9F1A00704308 /* Base in Resources */,
+				AEA428E22C45E7CD00FA5165 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,6 +433,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AEA428DC2C45AAF500FA5165 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		AECC86652C4A76EE00A6A39B /* VoxelCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VoxelCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

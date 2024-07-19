@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 import DesignSystem
 import VoxelAuthentication
+import VoxelCore
 
 enum OTPStrings: String {
     case title = "Enter the code"
@@ -268,9 +269,7 @@ extension OTPViewController {
                 try await self?.viewModel.verifyOTP(with: digits)
                 
                 loadingVC.dismiss(animated: true) { [weak self] in
-                    let vc = UIViewController()
-                    vc.modalPresentationStyle = .fullScreen
-                    self?.present(vc, animated: true)
+                    self?.didLoginSuccessfully()
                 }
             } catch {
                 loadingVC.dismiss(animated: true) { [weak self] in   
@@ -280,6 +279,8 @@ extension OTPViewController {
             }
         }
     }
+    
+    private func didLoginSuccessfully() {
+        NotificationCenter.default.post(.didLoginSuccessfully)
+    }
 }
-
-

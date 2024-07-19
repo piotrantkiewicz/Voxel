@@ -14,6 +14,10 @@ let package = Package(
             targets: ["VoxelAuthentication"]
         ),
         .library(
+            name: "VoxelCore",
+            targets: ["VoxelCore"]
+        ),
+        .library(
             name: "VoxelLogin",
             targets: ["VoxelLogin"]
         )
@@ -48,11 +52,13 @@ let package = Package(
                 )
             ]
         ),
+        .target(name: "VoxelCore"),
         .target(
             name: "VoxelLogin",
             dependencies: [
                 "DesignSystem",
                 "VoxelAuthentication",
+                "VoxelCore",
                 "PhoneNumberKit",
                 "SnapKit"
             ],
