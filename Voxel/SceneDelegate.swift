@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     private func setUpTabBar() -> UIViewController {
-        UIViewController()
+        TabBarController()
     }
     
     private func setupPhoneNumberController() -> UIViewController {
