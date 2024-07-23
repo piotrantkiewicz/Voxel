@@ -35,6 +35,7 @@ extension SettingsHeaderCell {
     
     private func setupUI() {
         backgroundColor = .clear
+        selectionStyle = .none
         
         setupContainer()
         setupStackView()

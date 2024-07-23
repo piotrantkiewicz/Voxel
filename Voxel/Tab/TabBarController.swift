@@ -10,6 +10,11 @@ class TabBarController: UITabBarController {
         setupViewControllers()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
     private func setupUI() {
         view.backgroundColor = .background
         tabBar.barTintColor = .background
@@ -37,5 +42,7 @@ class TabBarController: UITabBarController {
             chats,
             settingsNav
         ]
+        
+        selectedViewController = settingsNav
     }
 }

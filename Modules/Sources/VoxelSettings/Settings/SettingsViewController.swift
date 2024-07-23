@@ -71,4 +71,13 @@ extension SettingsViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         96
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presentProfileEdit()
+    }
+    
+    private func presentProfileEdit() {
+        let controller = ProfileEditViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
