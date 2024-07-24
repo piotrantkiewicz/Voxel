@@ -1,14 +1,17 @@
 import UIKit
 
 public extension UINavigationController {
-    func styleVoxel() {
-        navigationBar.tintColor = .accent
+    
+    static func styleVoxel() {
+        let appearance = UINavigationBar.appearance()
+        
+        appearance.tintColor = .accent
         
         let image = UIImage(resource: .chevronLeft)
         
-        navigationBar.backIndicatorImage = image
-        navigationBar.backIndicatorTransitionMaskImage = image
+        appearance.backIndicatorImage = image
+        appearance.backIndicatorTransitionMaskImage = image
         
-        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        appearance.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
     }
 }
