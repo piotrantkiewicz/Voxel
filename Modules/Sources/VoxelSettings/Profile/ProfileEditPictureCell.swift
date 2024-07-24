@@ -18,6 +18,12 @@ class ProfileEditPictureCell: UITableViewCell {
         commonInit()
     }
     
+    func configure(with image: UIImage?) {
+        if let image {
+            profileImageView.image = image
+        }
+    }
+    
     private func commonInit() {
         setupUI()
     }
@@ -35,6 +41,8 @@ extension ProfileEditPictureCell {
     
     private func setupProfileImageView() {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 48
+        imageView.layer.masksToBounds = true
         imageView.image = UIImage(resource: .avatar)
         
         contentView.addSubview(imageView)

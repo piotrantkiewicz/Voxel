@@ -22,7 +22,7 @@ class ProfileTextFieldCell: UITableViewCell {
         }
     }
     
-    private weak var textField: UITextField!
+    weak var textField: UITextField!
     private weak var containerView: UIView!
     private weak var headerLbl: UILabel!
     private weak var footerLbl: UILabel!
