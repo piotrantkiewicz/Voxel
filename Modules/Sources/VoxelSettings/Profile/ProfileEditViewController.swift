@@ -220,7 +220,7 @@ extension ProfileEditViewController: UITableViewDelegate {
             didTapProfilePicture()
             
         case .logout:
-            didLogout()
+            didRequestLogout()
             
         default:
             break
@@ -228,8 +228,21 @@ extension ProfileEditViewController: UITableViewDelegate {
         
     }
     
-    private func didLogout() {
-        print("didLogout")
+    private func didRequestLogout() {
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to logout?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { [weak self] _ in
+            self?.didConfirmLogout()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
+    }
+    
+    private func didConfirmLogout() {
+        do {
+            try viewModel.logout()
+        } catch {
+            showError(error.localizedDescription)
+        }
     }
 }
 

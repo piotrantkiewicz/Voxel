@@ -13,13 +13,16 @@ public final class SettingsViewModel {
     
     var didUpdateHeader: (() -> ())?
     
+    let authService: AuthService
     let userRepository: UserProfileRepository
     let profilePictureRepository: ProfilePictureRepository
     
     public init(
+        authService: AuthService,
         userRepository: UserProfileRepository,
         profilePictureRepository: ProfilePictureRepository
     ) {
+        self.authService = authService
         self.userRepository = userRepository
         self.profilePictureRepository = profilePictureRepository
         

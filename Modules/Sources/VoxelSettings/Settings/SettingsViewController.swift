@@ -89,6 +89,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     private func presentProfileEdit() {
         let viewModel = ProfileEditViewModel(
+            authService: viewModel.authService,
             userRepository: viewModel.userRepository,
             profilePictureRepository: viewModel.profilePictureRepository
         )
