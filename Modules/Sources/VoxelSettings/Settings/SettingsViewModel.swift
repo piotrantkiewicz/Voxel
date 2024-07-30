@@ -1,4 +1,5 @@
 import UIKit
+import VoxelAuthentication
 
 public final class SettingsViewModel {
     
@@ -8,9 +9,15 @@ public final class SettingsViewModel {
         let description: String
     }
     
-    let header: Header
+    var header: Header
     
-    public init() {
+    var didUpdateHeader: (() -> ())?
+    
+    let userRepository: UserProfileRepository
+    
+    public init(userRepository: UserProfileRepository) {
+        self.userRepository = userRepository
+        
         header = Header(
             image: UIImage(resource: .avatar),
             name: "~",
@@ -18,4 +25,28 @@ public final class SettingsViewModel {
         )
     }
     
+    func fetchUserProfile() {
+        Task { [weak self] in
+            do {
+                guard let profile = try await self?.userRepository.fetchUserProfile()
+                else { return }
+                
+                await MainActor.run { [weak self] in
+                    self?.updateHeader(with: profile)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    private func updateHeader(with userProfile: UserProfile) {
+        header = Header(
+            image: UIImage(resource: .avatar),
+            name: userProfile.fullName,
+            description: userProfile.description
+        )
+        
+        didUpdateHeader?()
+    }
 }

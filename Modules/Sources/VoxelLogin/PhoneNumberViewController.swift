@@ -1,6 +1,7 @@
 import UIKit
 import DesignSystem
 import VoxelAuthentication
+import VoxelCore
 import PhoneNumberKit
 import SnapKit
 
@@ -214,13 +215,5 @@ extension PhoneNumberViewController {
         viewController.viewModel = OTPViewModel(authService: viewModel.authService)
         viewController.phoneNumber = textField.text ?? ""
         navigationController?.pushViewController(viewController, animated: true)
-    }
-}
-
-extension UIViewController {
-    func showError(_ error: String) {
-        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default))
-        self.present(alert, animated: true)
     }
 }

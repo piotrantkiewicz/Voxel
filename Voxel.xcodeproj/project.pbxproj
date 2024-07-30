@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE09F75B2C57A1040075F096 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE09F75A2C57A1040075F096 /* GoogleService-Info.plist */; };
 		AE47AA8E2C3D9F1900704308 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE47AA8D2C3D9F1900704308 /* AppDelegate.swift */; };
 		AE47AA902C3D9F1900704308 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE47AA8F2C3D9F1900704308 /* SceneDelegate.swift */; };
 		AE47AA972C3D9F1A00704308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE47AA962C3D9F1A00704308 /* Assets.xcassets */; };
@@ -16,7 +17,6 @@
 		AEA428D72C4567B800FA5165 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */; };
 		AEA428DE2C45B3D300FA5165 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = AEA428DD2C45B3D300FA5165 /* DesignSystem */; };
 		AEA428E02C45B3DE00FA5165 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AEA428DF2C45B3DE00FA5165 /* FirebaseAuth */; };
-		AEA428E22C45E7CD00FA5165 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */; };
 		AECC86662C4A76EE00A6A39B /* VoxelCore in Frameworks */ = {isa = PBXBuildFile; productRef = AECC86652C4A76EE00A6A39B /* VoxelCore */; };
 		AECC86682C4A7E0E00A6A39B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC86672C4A7E0E00A6A39B /* TabBarController.swift */; };
 		AECC866A2C4A80E500A6A39B /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECC86692C4A80E500A6A39B /* Tab.swift */; };
@@ -26,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AE09F75A2C57A1040075F096 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE47AA8A2C3D9F1900704308 /* Voxel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voxel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE47AA8D2C3D9F1900704308 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE47AA8F2C3D9F1900704308 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		AE77971E2C3E8DBE005D51B9 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
 		AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Bold.ttf"; sourceTree = "<group>"; };
 		AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
-		AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AECC86672C4A7E0E00A6A39B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AECC86692C4A80E500A6A39B /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		AEDEA5CC2C413EE000AAE70A /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 				AE47AA8D2C3D9F1900704308 /* AppDelegate.swift */,
 				AE47AA8F2C3D9F1900704308 /* SceneDelegate.swift */,
 				AE47AA982C3D9F1A00704308 /* LaunchScreen.storyboard */,
-				AEA428E12C45E7CD00FA5165 /* GoogleService-Info.plist */,
+				AE09F75A2C57A1040075F096 /* GoogleService-Info.plist */,
 				AE47AA9B2C3D9F1A00704308 /* Info.plist */,
 			);
 			path = Voxel;
@@ -200,7 +200,7 @@
 				AEDEA5CF2C42811A00AAE70A /* IBMPlexSans-SemiBold.ttf in Resources */,
 				AE91345F2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf in Resources */,
 				AE47AA9A2C3D9F1A00704308 /* Base in Resources */,
-				AEA428E22C45E7CD00FA5165 /* GoogleService-Info.plist in Resources */,
+				AE09F75B2C57A1040075F096 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

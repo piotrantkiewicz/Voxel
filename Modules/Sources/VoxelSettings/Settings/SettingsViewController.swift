@@ -6,12 +6,22 @@ public final class SettingsViewController: UIViewController {
     
     private weak var tableView: UITableView!
     
-    let viewModel = SettingsViewModel()
+    public var viewModel: SettingsViewModel!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         configureTableView()
+        
+        viewModel.didUpdateHeader = { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        viewModel.fetchUserProfile()
     }
     
     private func configureTableView() {
@@ -78,7 +88,9 @@ extension SettingsViewController: UITableViewDelegate {
     }
     
     private func presentProfileEdit() {
+        let viewModel = ProfileEditViewModel(userRepository: viewModel.userRepository)
         let controller = ProfileEditViewController()
+        controller.viewModel = viewModel
         navigationController?.pushViewController(controller, animated: true)
     }
 }

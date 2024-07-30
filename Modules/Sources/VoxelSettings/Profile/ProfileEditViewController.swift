@@ -1,12 +1,6 @@
 import UIKit
 import SnapKit
-
-public final class ProfileEditViewModel {
-    
-    var selectedImage: UIImage?
-    var fullName: String = ""
-    var description: String = ""
-}
+import VoxelCore
 
 public final class ProfileEditViewController: UIViewController {
     
@@ -19,7 +13,7 @@ public final class ProfileEditViewController: UIViewController {
     
     private weak var tableView: UITableView!
     
-    let viewModel = ProfileEditViewModel()
+    var viewModel: ProfileEditViewModel!
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +108,14 @@ extension ProfileEditViewController {
     
     @objc
     private func didTapSave() {
-        print("did save")
+        view.endEditing(true)
+        
+        do {
+            try viewModel.save()
+            navigationController?.popViewController(animated: true)
+        } catch {
+            showError(error.localizedDescription)
+        }
     }
     
     private func setupTableView() {
@@ -168,7 +169,10 @@ extension ProfileEditViewController: UITableViewDataSource {
             
             cell.textField.delegate = self
             
-            cell.configure(with: row == .fullName ? .fullName() : .description())
+            cell.configure(with: row == .fullName 
+                           ? .fullName(text: viewModel.fullName)
+                           : .description(text: viewModel.description)
+            )
             
             return cell
         

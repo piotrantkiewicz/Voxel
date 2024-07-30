@@ -74,8 +74,10 @@ let package = Package(
             name: "VoxelSettings",
             dependencies: [
                 "DesignSystem",
+                "VoxelAuthentication",
                 "VoxelCore",
-                "SnapKit"
+                "SnapKit",
+                .product(name: "FirebaseDatabase", package: "firebase-ios-sdk"),
             ],
             resources: [
                 .process("Resources")
