@@ -4,7 +4,7 @@ import VoxelAuthentication
 public final class SettingsViewModel {
     
     struct Header {
-        let image: UIImage
+        let imageUrl: URL?
         let name: String
         let description: String
     }
@@ -14,12 +14,17 @@ public final class SettingsViewModel {
     var didUpdateHeader: (() -> ())?
     
     let userRepository: UserProfileRepository
+    let profilePictureRepository: ProfilePictureRepository
     
-    public init(userRepository: UserProfileRepository) {
+    public init(
+        userRepository: UserProfileRepository,
+        profilePictureRepository: ProfilePictureRepository
+    ) {
         self.userRepository = userRepository
+        self.profilePictureRepository = profilePictureRepository
         
         header = Header(
-            image: UIImage(resource: .avatar),
+            imageUrl: nil,
             name: "~",
             description: "No Desciption"
         )
@@ -42,7 +47,7 @@ public final class SettingsViewModel {
     
     private func updateHeader(with userProfile: UserProfile) {
         header = Header(
-            image: UIImage(resource: .avatar),
+            imageUrl: userProfile.profilePictureUrl,
             name: userProfile.fullName,
             description: userProfile.description
         )

@@ -5,10 +5,16 @@ import VoxelAuthentication
 public struct UserProfile: Codable {
     public let fullName: String
     public let description: String
+    public let profilePictureUrl: URL?
     
-    public init(fullName: String, description: String) {
+    public init(
+        fullName: String,
+        description: String,
+        profilePictureUr: URL? = nil
+    ) {
         self.fullName = fullName
         self.description = description
+        self.profilePictureUrl = profilePictureUr
     }
 }
 
@@ -30,6 +36,7 @@ public protocol UserProfileRepository {
     
     func saveUserProfile(_ userProfile: UserProfile) throws
     func fetchUserProfile() async throws -> UserProfile
+    func saveProfilePictureUrl(_ url: URL) throws
 }
 
 public class UserProfileRepositoryLive: UserProfileRepository {
@@ -66,5 +73,15 @@ public class UserProfileRepositoryLive: UserProfileRepository {
         self.profile = profile
         
         return profile
+    }
+    
+    public func saveProfilePictureUrl(_ url: URL) throws {
+        guard let user = authService.user else {
+            throw UserProfileRepositoryError.notAuthenticated
+        }
+        
+        reference.child("users").child(user.uid).updateChildValues([
+            "profilePictureUrl": url.absoluteString
+        ])
     }
 }
