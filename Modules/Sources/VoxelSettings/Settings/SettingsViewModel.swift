@@ -1,5 +1,6 @@
 import UIKit
 import VoxelAuthentication
+import Swinject
 
 public final class SettingsViewModel {
     
@@ -13,18 +14,16 @@ public final class SettingsViewModel {
     
     var didUpdateHeader: (() -> ())?
     
-    let authService: AuthService
-    let userRepository: UserProfileRepository
-    let profilePictureRepository: ProfilePictureRepository
+    let container: Container
+    
+    var userRepository: UserProfileRepository {
+        container.resolve(UserProfileRepository.self)!
+    }
     
     public init(
-        authService: AuthService,
-        userRepository: UserProfileRepository,
-        profilePictureRepository: ProfilePictureRepository
+        container: Container
     ) {
-        self.authService = authService
-        self.userRepository = userRepository
-        self.profilePictureRepository = profilePictureRepository
+        self.container = container
         
         header = Header(
             imageUrl: nil,

@@ -3,21 +3,34 @@ import VoxelAuthentication
 import VoxelLogin
 import VoxelCore
 import DesignSystem
+import Swinject
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var container: Container!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        setupContainer()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
         UINavigationController.styleVoxel()
         
-        let navigationController = UINavigationController(
-            rootViewController: setupInitialViewController()
-        )
+        let navigationController = UINavigationController()
+        
+        let authService = container.resolve(AuthService.self)!
+        if authService.isAuthenticated {
+            navigationController.setViewControllers([setUpTabBar()], animated: false)
+        } else {
+            let coordinator = PhoneNumberCoordinator(
+                navigationController: navigationController,
+                container: container
+            )
+            
+            coordinator.start()
+        }
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
@@ -26,22 +39,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         subscribeToLogout()
     }
     
-    private func setupInitialViewController() -> UIViewController {
-        let authService = AuthServiceLive()
-        
-        return authService.isAuthenticated ? setUpTabBar() : setupPhoneNumberController()
-    }
-    
     private func setUpTabBar() -> UIViewController {
-        TabBarController()
-    }
-    
-    private func setupPhoneNumberController() -> UIViewController {
-        let authService = AuthServiceLive()
-        let viewModel = PhoneNumberViewModel(authService: authService)
-        let phoneNumberController = PhoneNumberViewController()
-        phoneNumberController.viewModel = viewModel
-        return phoneNumberController
+        TabBarController(container: container)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -104,10 +103,21 @@ extension SceneDelegate {
     
     @objc
     private func didLogout() {
-        let navigationController = window?.rootViewController as? UINavigationController
-        navigationController?.setViewControllers(
-            [setupPhoneNumberController()],
-            animated: true
+        guard let navigationController = window?.rootViewController as? UINavigationController else { return }
+        
+        let coordinator = PhoneNumberCoordinator(
+            navigationController: navigationController,
+            container: container
         )
+        
+        coordinator.start()
+    }
+}
+
+extension SceneDelegate {
+    
+    private func setupContainer() {
+        container = Container()
+        AppAssembly(container: container).asemble()
     }
 }

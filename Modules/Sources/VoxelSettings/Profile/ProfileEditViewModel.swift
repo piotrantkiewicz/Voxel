@@ -1,6 +1,7 @@
 import UIKit
 import VoxelAuthentication
 import VoxelCore
+import Swinject
 
 public final class ProfileEditViewModel {
     
@@ -9,18 +10,22 @@ public final class ProfileEditViewModel {
     var description: String = ""
     var profilePictureUrl: URL? = nil
     
-    private let authService: AuthService
-    private let userRepository: UserProfileRepository
-    private let profilePictureRepository: ProfilePictureRepository
+    let container: Container
     
-    init(
-        authService: AuthService,
-        userRepository: UserProfileRepository,
-        profilePictureRepository: ProfilePictureRepository
+    var authService: AuthService {
+        container.resolve(AuthService.self)!
+    }
+    var userRepository: UserProfileRepository {
+        container.resolve(UserProfileRepository.self)!
+    }
+    var profilePictureRepository: ProfilePictureRepository {
+        container.resolve(ProfilePictureRepository.self)!
+    }
+    
+    public init(
+        container: Container
     ) {
-        self.authService = authService
-        self.userRepository = userRepository
-        self.profilePictureRepository = profilePictureRepository
+        self.container = container
         
         if let profile = userRepository.profile {
             fullName = profile.fullName

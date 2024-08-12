@@ -5,23 +5,10 @@ import VoxelCore
 import PhoneNumberKit
 import SnapKit
 
-
 enum PhoneNumberStrings: String {
     case title = "Enter your phone number"
     case subtitle = "What a phone number can people use to reach you?"
     case continueButton = "Continue"
-}
-
-public final class PhoneNumberViewModel {
-    var authService: AuthService
-    
-    public init(authService: AuthService) {
-        self.authService = authService
-    }
-    
-    public func requestOTP(with phoneNumber: String) async throws{
-        try await authService.requestOTP(forPhoneNumber: phoneNumber)
-    }
 }
 
 public class PhoneNumberViewController: UIViewController {
@@ -202,18 +189,9 @@ extension PhoneNumberViewController {
         Task { [weak self] in
             do {
                 try await self?.viewModel.requestOTP(with: phoneNumber)
-                
-                self?.presentOTP()
             } catch {
                 self?.showError(error.localizedDescription)
             }
         }
-    }
-
-    private func presentOTP() {
-        let viewController = OTPViewController()
-        viewController.viewModel = OTPViewModel(authService: viewModel.authService)
-        viewController.phoneNumber = textField.text ?? ""
-        navigationController?.pushViewController(viewController, animated: true)
     }
 }
