@@ -113,7 +113,6 @@ extension ProfileEditViewController {
         Task {
             do {
                 try await viewModel.save()
-                navigationController?.popViewController(animated: true)
             } catch {
                 showError(error.localizedDescription)
             }

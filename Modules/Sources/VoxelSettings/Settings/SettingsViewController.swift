@@ -84,13 +84,6 @@ extension SettingsViewController: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentProfileEdit()
-    }
-    
-    private func presentProfileEdit() {
-        let viewModel = ProfileEditViewModel(container: viewModel.container)
-        let controller = ProfileEditViewController()
-        controller.viewModel = viewModel
-        navigationController?.pushViewController(controller, animated: true)
+        viewModel.presentProfileEdit()
     }
 }
