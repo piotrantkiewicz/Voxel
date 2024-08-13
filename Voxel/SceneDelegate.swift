@@ -9,6 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var container: Container!
+    var coordinator: AppCoordinator!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         setupContainer()
@@ -18,29 +19,23 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UINavigationController.styleVoxel()
         
+        setupAppCoordinator()
+    }
+    
+    private func setupAppCoordinator() {
         let navigationController = UINavigationController()
         
-        let authService = container.resolve(AuthService.self)!
-        if authService.isAuthenticated {
-            navigationController.setViewControllers([setUpTabBar()], animated: false)
-        } else {
-            let coordinator = PhoneNumberCoordinator(
-                navigationController: navigationController,
-                container: container
-            )
-            
-            coordinator.start()
-        }
+        let coordinator = AppCoordinator(
+            navigationController: navigationController,
+            container: container
+        )
+        
+        coordinator.start()
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         
-        subscribeToLogin()
-        subscribeToLogout()
-    }
-    
-    private func setUpTabBar() -> UIViewController {
-        TabBarController(container: container)
+        self.coordinator = coordinator
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -72,46 +67,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
-
-extension SceneDelegate {
-    private func subscribeToLogin() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didLoginSuccessfully),
-            name: Notification.Name(AppNotification.didLoginSuccessfully.rawValue),
-            object: nil
-        )
-    }
-    
-    @objc
-    private func didLoginSuccessfully() {
-        let navigationController = window?.rootViewController as? UINavigationController
-        navigationController?.setViewControllers([setUpTabBar()], animated: true)
-    }
-}
-
-extension SceneDelegate {
-    private func subscribeToLogout() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(didLogout),
-            name: Notification.Name(AppNotification.didLogout.rawValue),
-            object: nil
-        )
-    }
-    
-    @objc
-    private func didLogout() {
-        guard let navigationController = window?.rootViewController as? UINavigationController else { return }
-        
-        let coordinator = PhoneNumberCoordinator(
-            navigationController: navigationController,
-            container: container
-        )
-        
-        coordinator.start()
-    }
 }
 
 extension SceneDelegate {

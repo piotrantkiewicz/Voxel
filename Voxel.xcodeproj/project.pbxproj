@@ -16,6 +16,7 @@
 		AE47AA902C3D9F1900704308 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE47AA8F2C3D9F1900704308 /* SceneDelegate.swift */; };
 		AE47AA972C3D9F1A00704308 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE47AA962C3D9F1A00704308 /* Assets.xcassets */; };
 		AE47AA9A2C3D9F1A00704308 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = AE47AA992C3D9F1A00704308 /* Base */; };
+		AE8D71F42C6AC00500C98F4C /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8D71F32C6AC00500C98F4C /* AppCoordinator.swift */; };
 		AE91345B2C4075F9009D8BF6 /* VoxelLogin in Frameworks */ = {isa = PBXBuildFile; productRef = AE91345A2C4075F9009D8BF6 /* VoxelLogin */; };
 		AE91345F2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */; };
 		AEA428D72C4567B800FA5165 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */; };
@@ -40,6 +41,7 @@
 		AE47AA992C3D9F1A00704308 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE47AA9B2C3D9F1A00704308 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE77971E2C3E8DBE005D51B9 /* Modules */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Modules; sourceTree = "<group>"; };
+		AE8D71F32C6AC00500C98F4C /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		AE91345E2C407D44009D8BF6 /* IBMPlexSerif-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Bold.ttf"; sourceTree = "<group>"; };
 		AEA428D62C4567B800FA5165 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		AECC86672C4A7E0E00A6A39B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				AE09F75A2C57A1040075F096 /* GoogleService-Info.plist */,
 				AE47AA9B2C3D9F1A00704308 /* Info.plist */,
 				AE1E1E942C5B99FB004D5311 /* AppAssembly.swift */,
+				AE8D71F32C6AC00500C98F4C /* AppCoordinator.swift */,
 			);
 			path = Voxel;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 				AE1E1E952C5B99FB004D5311 /* AppAssembly.swift in Sources */,
 				AE47AA902C3D9F1900704308 /* SceneDelegate.swift in Sources */,
 				AECC866A2C4A80E500A6A39B /* Tab.swift in Sources */,
+				AE8D71F42C6AC00500C98F4C /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
