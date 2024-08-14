@@ -6,6 +6,10 @@ public enum AuthError: Error {
 
 public struct User {
     public let uid: String
+    
+    public init(uid: String) {
+        self.uid = uid
+    }
 }
 
 enum UserDefaultKey: String {
