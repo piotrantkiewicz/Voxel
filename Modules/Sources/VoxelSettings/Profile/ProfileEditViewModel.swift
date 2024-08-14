@@ -53,8 +53,9 @@ public final class ProfileEditViewModel {
     }
     
     func logout() throws {
-        try authService.logout()
+//        try authService.logout()
         NotificationCenter.default.post(.didLogout)
+        print("logout")
     }
 }
 

@@ -22,6 +22,10 @@ let package = Package(
             targets: ["VoxelLogin"]
         ),
         .library(
+            name: "VoxelMocks",
+            targets: ["VoxelMocks"]
+        ),
+        .library(
             name: "VoxelSettings",
             targets: ["VoxelSettings"]
         )
@@ -72,6 +76,18 @@ let package = Package(
             resources: [
                 .process("Resources")
             ]
+        ),
+        .testTarget(
+            name: "VoxelLoginTests",
+            dependencies: [
+                "VoxelLogin",
+                "VoxelMocks",
+                "Swinject",
+            ]
+        ),
+        .target(
+            name: "VoxelMocks",
+            dependencies: ["VoxelAuthentication"]
         ),
         .target(
             name: "VoxelSettings",

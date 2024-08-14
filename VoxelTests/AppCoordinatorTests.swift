@@ -68,9 +68,3 @@ final class AppCoordinatorTests: XCTestCase {
         XCTAssertTrue(navigationController.viewControllers.first is PhoneNumberViewController)
     }
 }
-
-
-
-
-
-
