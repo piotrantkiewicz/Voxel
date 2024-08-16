@@ -20,7 +20,7 @@ public class PhoneNumberCoordinatorLive: PhoneNumberCoordinator {
         let viewModel = PhoneNumberViewModel(container: container, coordinator: self)
         let controller = PhoneNumberViewController()
         controller.viewModel = viewModel
-        navigationController.setViewControllers([controller], animated: true)
+        navigationController.setViewControllers([controller], animated: false)
     }
     
     public func presentOTP(with phoneNumber: String) {

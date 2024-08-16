@@ -2,7 +2,11 @@ import UIKit
 import VoxelCore
 import Swinject
 
-public class ProfileEditCoordinator: Coordinator {
+protocol ProfileEditCoordinator: Coordinator {
+    func dismiss()
+}
+
+public class ProfileEditCoordinatorLive: ProfileEditCoordinator {
     
     private let navigationController: UINavigationController
     private let container: Container

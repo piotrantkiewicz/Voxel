@@ -23,7 +23,7 @@ public final class ProfileEditViewModel {
         container.resolve(ProfilePictureRepository.self)!
     }
     
-    public init(
+    init(
         container: Container,
         coordinator: ProfileEditCoordinator
     ) {
@@ -53,9 +53,8 @@ public final class ProfileEditViewModel {
     }
     
     func logout() throws {
-//        try authService.logout()
+        try authService.logout()
         NotificationCenter.default.post(.didLogout)
-        print("logout")
     }
 }
 

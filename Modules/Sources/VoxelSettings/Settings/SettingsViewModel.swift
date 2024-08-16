@@ -31,7 +31,7 @@ public final class SettingsViewModel {
         header = Header(
             imageUrl: nil,
             name: "~",
-            description: "No Desciption"
+            description: "No description"
         )
     }
     
@@ -39,18 +39,11 @@ public final class SettingsViewModel {
         coordinator.presentProfileEdit()
     }
     
-    func fetchUserProfile() {
-        Task { [weak self] in
-            do {
-                guard let profile = try await self?.userRepository.fetchUserProfile()
-                else { return }
-                
-                await MainActor.run { [weak self] in
-                    self?.updateHeader(with: profile)
-                }
-            } catch {
-                print(error)
-            }
+    func fetchUserProfile() async throws {
+        let profile = try await userRepository.fetchUserProfile()
+        
+        await MainActor.run { [weak self] in
+            self?.updateHeader(with: profile)
         }
     }
     

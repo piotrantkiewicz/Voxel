@@ -30,5 +30,8 @@ public class AuthServiceMock: AuthService {
         return User(uid: "123")
     }
     
-    public func logout() throws {}
+    public var didLogout: Int = 0
+    public func logout() throws {
+        didLogout += 1
+    }
 }

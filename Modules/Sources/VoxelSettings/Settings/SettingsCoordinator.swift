@@ -2,7 +2,11 @@ import UIKit
 import VoxelCore
 import Swinject
 
-public class SettingsCoordinator: Coordinator {
+public protocol SettingsCoordinator: Coordinator {
+    func presentProfileEdit()
+}
+
+public class SettingsCoordinatorLive: SettingsCoordinator {
     
     private let navigationController: UINavigationController
     private let container: Container
@@ -26,8 +30,8 @@ public class SettingsCoordinator: Coordinator {
         self.rootViewController = controller
     }
     
-    func presentProfileEdit() {
-        let coordinator = ProfileEditCoordinator(
+    public func presentProfileEdit() {
+        let coordinator = ProfileEditCoordinatorLive(
             navigationController: navigationController,
             container: container
         )

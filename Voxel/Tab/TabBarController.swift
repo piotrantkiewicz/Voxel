@@ -58,7 +58,7 @@ class TabBarController: UITabBarController {
     
     private func setupSettings() -> UIViewController {
         let navigationController = UINavigationController()
-        let coordinator = SettingsCoordinator(
+        let coordinator = SettingsCoordinatorLive(
             navigationController: navigationController,
             container: container
         )

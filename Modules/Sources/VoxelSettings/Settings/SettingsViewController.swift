@@ -21,7 +21,17 @@ public final class SettingsViewController: UIViewController {
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.fetchUserProfile()
+        fetchUserProfile()
+    }
+    
+    private func fetchUserProfile() {
+        Task {
+            do {
+                try await viewModel.fetchUserProfile()
+            } catch {
+                showError(error.localizedDescription)
+            }
+        }
     }
     
     private func configureTableView() {
