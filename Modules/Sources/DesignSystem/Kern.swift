@@ -7,4 +7,3 @@ public enum Kern {
         return kernInPoints
     }
 }
-

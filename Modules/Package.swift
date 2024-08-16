@@ -7,88 +7,95 @@ let package = Package(
     products: [
         .library(
             name: "DesignSystem",
-            targets: ["DesignSystem"]
-        ),
+            targets: ["DesignSystem"]),
         .library(
             name: "VoxelAuthentication",
-            targets: ["VoxelAuthentication"]
-        ),
+            targets: ["VoxelAuthentication"]),
+        .library(
+            name: "VoxelContacts",
+            targets: ["VoxelContacts"]),
         .library(
             name: "VoxelCore",
-            targets: ["VoxelCore"]
-        ),
+            targets: ["VoxelCore"]),
         .library(
             name: "VoxelLogin",
-            targets: ["VoxelLogin"]
-        ),
+            targets: ["VoxelLogin"]),
         .library(
             name: "VoxelMocks",
-            targets: ["VoxelMocks"]
-        ),
+            targets: ["VoxelMocks"]),
         .library(
             name: "VoxelSettings",
-            targets: ["VoxelSettings"]
-        )
+            targets: ["VoxelSettings"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: "10.29.0"),
-        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.5.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", exact: "10.28.0"),
+        .package(url: "https://github.com/airbnb/lottie-spm.git", from: "4.4.3"),
         .package(url: "https://github.com/marmelroy/PhoneNumberKit", from: "3.7.0"),
         .package(url: "https://github.com/SnapKit/SnapKit.git", .upToNextMajor(from: "5.0.1")),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0"),
-        .package(url: "https://github.com/Swinject/Swinject.git", from: "2.9.1"),
-        
+        .package(url: "https://github.com/Swinject/Swinject.git", .upToNextMajor(from: "2.9.1"))
     ],
     targets: [
+
         .target(
             name: "DesignSystem",
             dependencies: [
-                .product(
-                    name: "Lottie",
-                    package: "lottie-spm"
-                ),
+                .product(name: "Lottie", package: "lottie-spm"),
                 "SnapKit"
             ],
             resources: [
                 .process("Resources")
             ]
         ),
+
         .target(
             name: "VoxelAuthentication",
             dependencies: [
-                .product(
-                    name: "FirebaseAuth",
-                    package: "firebase-ios-sdk"
-                )
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
             ]
         ),
+
+        .target(
+            name: "VoxelContacts",
+            dependencies: [
+                "DesignSystem",
+                "VoxelCore",
+                "Swinject",
+                "SnapKit",
+                "PhoneNumberKit"
+            ]
+        ),
+
         .target(name: "VoxelCore"),
+
         .target(
             name: "VoxelLogin",
             dependencies: [
                 "DesignSystem",
                 "VoxelAuthentication",
                 "VoxelCore",
-                "PhoneNumberKit",
                 "SnapKit",
+                "PhoneNumberKit",
                 "Swinject",
             ],
             resources: [
                 .process("Resources")
             ]
         ),
+
         .testTarget(
             name: "VoxelLoginTests",
             dependencies: [
                 "VoxelLogin",
-                "VoxelMocks",
-                "Swinject",
+                "VoxelMocks"
             ]
         ),
+
         .target(
             name: "VoxelMocks",
             dependencies: ["VoxelAuthentication"]
         ),
+
         .target(
             name: "VoxelSettings",
             dependencies: [
@@ -105,20 +112,5 @@ let package = Package(
                 .process("Resources")
             ]
         ),
-        .testTarget(
-            name: "VoxelSettingsTests",
-            dependencies: [
-                "VoxelMocks",
-                "VoxelSettings",
-                "Swinject"
-            ]
-        )
     ]
 )
-
-
-
-
-
-
-

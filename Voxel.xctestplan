@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "C4B05814-F5CC-473D-83F0-816AE816BD65",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Voxel.xcodeproj",
+        "identifier" : "66B554C42C49549A007ED570",
+        "name" : "VoxelTests"
+      }
+    }
+  ],
+  "version" : 1
+}

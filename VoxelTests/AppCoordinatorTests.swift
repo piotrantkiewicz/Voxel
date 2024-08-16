@@ -5,65 +5,65 @@ import VoxelLogin
 @testable import Voxel
 
 final class AppCoordinatorTests: XCTestCase {
-    
+
     private var coordinator: AppCoordinator!
     private var navigationController: UINavigationController!
     private var container: Container!
     private var authService: AuthServiceMock!
-    
+
     override func setUp() {
         navigationController = UINavigationController()
         container = Container()
         authService = AuthServiceMock()
-        
+
         container.register(AuthService.self) { _ in
             self.authService
         }
-        
+
         coordinator = AppCoordinator(
             navigationController: navigationController,
             container: container
         )
     }
-    
+
     func test_whenUserIsAuthenticated_thenPresentTabBar() {
-        //given
+        // given
         authService.isAuthenticated = true
-        
-        //when
+
+        // when
         coordinator.start()
-        
-        //then
+
+        // then
         XCTAssertEqual(navigationController.viewControllers.count, 1)
         XCTAssertTrue(navigationController.viewControllers.first is TabBarController)
     }
-    
+
     func test_whenUserIsNotAuthenticated_thenPresentLogin() {
-        //given
+        // given
         authService.isAuthenticated = false
-        
-        //when
+
+        // when
         coordinator.start()
-        
-        //then
+
+        // then
         XCTAssertEqual(navigationController.viewControllers.count, 1)
         XCTAssertTrue(navigationController.viewControllers.first is PhoneNumberViewController)
     }
-    
+
     func test_whenUserCompletesLogin_thenShowTabBar() {
-        //when
+        // when
         NotificationCenter.default.post(.didLoginSuccessfully)
-        
-        //then
+
+        // then
         XCTAssertEqual(navigationController.viewControllers.count, 1)
         XCTAssertTrue(navigationController.viewControllers.first is TabBarController)
     }
-    
+
     func test_whenUserCompletesLogout_thenShowLogin() {
-        //when
+        // when
         NotificationCenter.default.post(.didLogout)
-        
-        //then
+
+        // then
         XCTAssertEqual(navigationController.viewControllers.count, 1)
         XCTAssertTrue(navigationController.viewControllers.first is PhoneNumberViewController)
     }

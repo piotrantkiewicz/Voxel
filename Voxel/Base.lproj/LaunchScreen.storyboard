@@ -16,19 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-asset" translatesAutoresizingMaskIntoConstraints="NO" id="371-R5-w54">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-screen-asset" translatesAutoresizingMaskIntoConstraints="NO" id="NQc-5F-ECy">
                                 <rect key="frame" x="144.66666666666666" y="353.66666666666669" width="104" height="145"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="104" id="dPJ-m7-Wfs"/>
-                                    <constraint firstAttribute="height" constant="145" id="idt-19-tWG"/>
+                                    <constraint firstAttribute="width" constant="104" id="Bfg-rz-dis"/>
+                                    <constraint firstAttribute="height" constant="145" id="ljp-qD-mR3"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="background"/>
                         <constraints>
-                            <constraint firstItem="371-R5-w54" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="FKC-2i-nPk"/>
-                            <constraint firstItem="371-R5-w54" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yRF-lj-pJ5"/>
+                            <constraint firstItem="NQc-5F-ECy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kua-FQ-NGR"/>
+                            <constraint firstItem="NQc-5F-ECy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="m3m-h0-uOf"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch-screen-asset" width="34.666667938232422" height="48.333332061767578"/>
+        <image name="launch-screen-asset" width="104" height="145"/>
         <namedColor name="background">
             <color red="0.96100002527236938" green="0.96100002527236938" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -1,7 +1,7 @@
 import UIKit
 import VoxelAuthentication
-import VoxelLogin
 import VoxelCore
+import VoxelLogin
 import DesignSystem
 import Swinject
 
@@ -13,28 +13,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         setupContainer()
-        
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        
+
         UINavigationController.styleVoxel()
-        
+
         setupAppCoordinator()
     }
-    
+
     private func setupAppCoordinator() {
         let navigationController = UINavigationController()
-        
+
         let coordinator = AppCoordinator(
             navigationController: navigationController,
             container: container
         )
-        
+
         coordinator.start()
-        
+
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        
+
         self.coordinator = coordinator
     }
 
@@ -65,12 +65,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 
 extension SceneDelegate {
-    
+
     private func setupContainer() {
         container = Container()
         AppAssembly(container: container).asemble()

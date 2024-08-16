@@ -1,15 +1,15 @@
 import UIKit
 import SnapKit
 
-class ProfileTextFieldCell: UITableViewCell {
-    
-    struct Model {
+public class ProfileTextFieldCell: UITableViewCell {
+
+    public struct Model {
         let placeholder: String
         let header: String
         let footer: String?
         let text: String?
-        
-        init(
+
+        public init(
             placeholder: String,
             header: String,
             footer: String? = nil,
@@ -21,29 +21,30 @@ class ProfileTextFieldCell: UITableViewCell {
             self.text = text
         }
     }
-    
-    weak var textField: UITextField!
+
+    public weak var textField: UITextField!
+
     private weak var containerView: UIView!
     private weak var headerLbl: UILabel!
     private weak var footerLbl: UILabel!
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         commonInit()
     }
-    
-    func configure(with model: Model) {
+
+    public func configure(with model: Model) {
         textField.placeholder = model.placeholder
         textField.text = model.text
         headerLbl.text = model.header
         footerLbl.text = model.footer ?? ""
     }
-    
+
     private func commonInit() {
         setupUI()
     }
@@ -51,78 +52,78 @@ class ProfileTextFieldCell: UITableViewCell {
 
 extension ProfileTextFieldCell {
     private func setupUI() {
-        backgroundColor = .clear
         selectionStyle = .none
-        
+        backgroundColor = .clear
+
         setupContainer()
         setupTextField()
         setupHeader()
         setupFooter()
     }
-    
+
     private func setupContainer() {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 8
         view.layer.masksToBounds = true
-        
+
         contentView.addSubview(view)
-        
+
         view.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.height.equalTo(44)
             make.top.equalToSuperview().offset(52)
         }
-        
+
         containerView = view
     }
-    
+
     private func setupTextField() {
         let textField = UITextField()
         textField.textColor = .text
         textField.font = .textField
-        
+
         containerView.addSubview(textField)
-        
+
         textField.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
             make.centerY.equalToSuperview()
         }
-        
+
         self.textField = textField
     }
-    
+
     private func setupHeader() {
         let label = UILabel()
         label.textColor = .textGray
         label.font = .title3
-        
+
         contentView.addSubview(label)
-        
+
         label.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalTo(containerView.snp.top).offset(-8)
         }
-        
-        self.headerLbl = label
+
+        headerLbl = label
     }
-    
+
     private func setupFooter() {
         let label = UILabel()
         label.textColor = .textGray
         label.font = .footer
-        
+
         contentView.addSubview(label)
-        
+
         label.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(12)
             make.right.equalToSuperview().offset(-12)
             make.top.equalTo(containerView.snp.bottom).offset(8)
         }
-        
+
         self.footerLbl = label
     }
 }
