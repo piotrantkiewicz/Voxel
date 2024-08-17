@@ -25,7 +25,7 @@ class AppCoordinator: Coordinator {
         if authService.isAuthenticated {
             navigationController.setViewControllers([setupTabBar()], animated: false)
         } else {
-            presentLogin()
+            navigationController.setViewControllers([setupTabBar()], animated: false)
         }
     }
 

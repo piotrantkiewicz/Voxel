@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		664E405A2C32E1280037110D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 664E40592C32E1280037110D /* GoogleService-Info.plist */; };
 		664E406C2C36DB630037110D /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 664E406B2C36DB630037110D /* Swinject */; };
 		664E406E2C36DB630037110D /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 664E406D2C36DB630037110D /* Swinject-Dynamic */; };
 		664E40702C36DB980037110D /* AppAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 664E406F2C36DB980037110D /* AppAssembly.swift */; };
@@ -43,7 +42,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		664E40592C32E1280037110D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		664E406F2C36DB980037110D /* AppAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAssembly.swift; sourceTree = "<group>"; };
 		665665D02C300750006FB1EA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		665665D22C300965006FB1EA /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 				669150342C257C31002061CA /* AppDelegate.swift */,
 				669150362C257C31002061CA /* SceneDelegate.swift */,
 				6691503F2C257C33002061CA /* LaunchScreen.storyboard */,
-				664E40592C32E1280037110D /* GoogleService-Info.plist */,
 				669150422C257C33002061CA /* Info.plist */,
 				664E406F2C36DB980037110D /* AppAssembly.swift */,
 				665D52B52C47E46E0048754B /* AppCoordinator.swift */,
@@ -281,7 +278,6 @@
 				6691503E2C257C33002061CA /* Assets.xcassets in Resources */,
 				669150532C25A0AF002061CA /* IBMPlexSans-Regular.ttf in Resources */,
 				669150592C25D93C002061CA /* IBMPlexSans-Bold.ttf in Resources */,
-				664E405A2C32E1280037110D /* GoogleService-Info.plist in Resources */,
 				669150552C25AE6F002061CA /* IBMPlexSans-SemiBold.ttf in Resources */,
 				6691504F2C259C82002061CA /* IBMPlexSerif-Bold.ttf in Resources */,
 				669150412C257C33002061CA /* Base in Resources */,

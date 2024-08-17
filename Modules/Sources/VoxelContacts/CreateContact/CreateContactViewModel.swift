@@ -26,7 +26,7 @@ public class CreateContactViewModel {
 
     private func createContact() {
         // Here you would typically use a service to create a new contact
-        let newContact = Contact(name: fullName, image: nil, isOnline: false, firstLetter: fullName.first ?? "A", phoneNumber: phoneNumber)
+//        let newContact = Contact(name: fullName, image: nil, isOnline: false, firstLetter: fullName.first ?? "A", phoneNumber: phoneNumber)
         // Save the new contact (this would depend on your app's architecture)
         // For example:
         // contactService.saveContact(newContact)
@@ -35,7 +35,7 @@ public class CreateContactViewModel {
 
     private func updateContact(_ contact: Contact) {
         // Here you would typically use a service to update the existing contact
-        let updatedContact = Contact(name: fullName, image: contact.image, isOnline: contact.isOnline, firstLetter: fullName.first ?? "A", phoneNumber: phoneNumber)
+//        let updatedContact = Contact(name: fullName, image: contact.image, isOnline: contact.isOnline, firstLetter: fullName.first ?? "A", phoneNumber: phoneNumber)
         // Update the contact (this would depend on your app's architecture)
         // For example:
         // contactService.updateContact(updatedContact)

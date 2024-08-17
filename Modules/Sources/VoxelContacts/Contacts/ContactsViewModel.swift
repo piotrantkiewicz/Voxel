@@ -5,7 +5,7 @@ public struct Contact {
     public let name: String
     public let image: UIImage?
     public let isOnline: Bool
-    public let firstLetter: Character
+    public let firstLetter: String
     public let phoneNumber: String
 }
 
@@ -14,8 +14,8 @@ public final class ContactsViewModel {
     private let coordinator: ContactsCoordinator
 
     private var contactsSource: [Contact] = []
-    var contacts: [Character: [Contact]] = [:]
-    var sectionTitles: [Character] = []
+    var contacts: [String: [Contact]] = [:]
+    var sectionTitles: [String] = []
 
     public init(container: Container, coordinator: ContactsCoordinator) {
         self.container = container
@@ -37,6 +37,27 @@ public final class ContactsViewModel {
         ]
 
         updateContacts(with: contactsSource)
+    }
+    
+    func search(with query: String) {
+        guard !query.isEmpty else {
+            updateContacts(with: contactsSource)
+            return
+        }
+        
+        let searchResluts = contactsSource.filter {
+            $0.name.lowercased().contains(query.lowercased()) ||
+            $0.phoneNumber.contains(query)
+        }
+        
+        didCompleteSearch(with: searchResluts)
+    }
+    
+    private func didCompleteSearch(with results: [Contact]) {
+        self.contacts = [
+            ContactsStrings.contactsSection.rawValue: results
+        ]
+        sectionTitles = self.contacts.keys.sorted()
     }
 
     func didTapAddContact() {

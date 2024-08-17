@@ -10,6 +10,9 @@ enum ContactsStrings: String {
 
 class ContactsViewController: UIViewController {
 
+    private lazy var searchController: UISearchController = {
+        UISearchController(searchResultsController: nil)
+    }()
     private weak var tableView: UITableView!
 
     var viewModel: ContactsViewModel!
@@ -48,6 +51,7 @@ extension ContactsViewController {
 
     private func setupUI() {
         setupNavigationTitle()
+        setupSearchController()
         setupTableView()
     }
 
@@ -60,6 +64,14 @@ extension ContactsViewController {
 
         let addBtn = UIBarButtonItem(image: UIImage(resource: .addBtn), style: .plain, target: self, action: #selector(didTapAddContact))
         navigationItem.rightBarButtonItem = addBtn
+    }
+    
+    private func setupSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.placeholder = ContactsStrings.search.rawValue
+        searchController.searchBar.tintColor = .accent
+        
+        navigationItem.searchController = searchController
     }
 
     @objc
@@ -80,6 +92,14 @@ extension ContactsViewController {
         }
 
         self.tableView = tableView
+    }
+}
+
+extension ContactsViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        viewModel.search(with: searchText)
+        tableView.reloadData()
     }
 }
 
