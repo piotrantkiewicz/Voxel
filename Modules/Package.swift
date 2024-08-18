@@ -65,6 +65,14 @@ let package = Package(
                 "PhoneNumberKit"
             ]
         ),
+        
+        .testTarget(
+            name: "VoxelContactsTests",
+            dependencies: [
+                "VoxelContacts",
+                "Swinject",
+            ]
+        ),
 
         .target(name: "VoxelCore"),
 
@@ -77,6 +85,7 @@ let package = Package(
                 "SnapKit",
                 "PhoneNumberKit",
                 "Swinject",
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
             ],
             resources: [
                 .process("Resources")

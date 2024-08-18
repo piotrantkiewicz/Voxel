@@ -18,6 +18,20 @@
         "identifier" : "66B554C42C49549A007ED570",
         "name" : "VoxelTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Modules",
+        "identifier" : "VoxelContactsTests",
+        "name" : "VoxelContactsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Modules",
+        "identifier" : "VoxelLoginTests",
+        "name" : "VoxelLoginTests"
+      }
     }
   ],
   "version" : 1

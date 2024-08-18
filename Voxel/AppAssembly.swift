@@ -1,6 +1,7 @@
 import Foundation
 import Swinject
 import VoxelAuthentication
+import VoxelContacts
 import VoxelSettings
 import VoxelLogin
 
@@ -31,5 +32,14 @@ class AppAssembly {
         container.register(ProfilePictureRepository.self) { container in
             profilePictureRepository
         }
+        
+        container.register(ContactsRepository.self) { _ in
+            ContactsRepositoryFake()
+        }
     }
 }
+
+
+
+
+

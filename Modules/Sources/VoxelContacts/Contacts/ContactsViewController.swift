@@ -39,9 +39,13 @@ class ContactsViewController: UIViewController {
 
     private func loadContacts() {
         Task {
-            await viewModel.fetch()
-            await MainActor.run {
-                self.tableView.reloadData()
+            do {
+                try await viewModel.fetch()
+                await MainActor.run {
+                    self.tableView.reloadData()
+                }
+            } catch {
+                showError(error.localizedDescription)
             }
         }
     }
