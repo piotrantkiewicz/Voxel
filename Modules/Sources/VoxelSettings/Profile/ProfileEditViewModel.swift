@@ -32,14 +32,15 @@ public final class ProfileEditViewModel {
         self.coordinator = coordinator
 
         if let profile = userRepository.profile {
-            fullName = profile.fullName
-            description = profile.description
+            fullName = profile.fullName ?? ""
+            description = profile.description ?? ""
             profilePictureUrl = profile.profilePictureUrl
         }
     }
 
     func save() async throws {
         let profile = UserProfile(
+            phoneNumber: "",
             fullName: fullName,
             description: description
         )
