@@ -71,10 +71,17 @@ class CreateContactViewController: UIViewController {
             viewModel.phoneNumber = contact.phoneNumber
         }
         tableView.reloadData()
+        updateSaveButton()
     }
 
     @objc private func createOrSaveTapped() {
-        viewModel.createTapped()
+        Task {
+            do {
+                try await viewModel.createTapped()
+            } catch {
+                showError(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -98,7 +105,7 @@ extension CreateContactViewController: UITableViewDataSource, UITableViewDelegat
                 header: "FULL NAME",
                 text: viewModel.fullName
             ))
-            cell.textField.delegate = self
+            cell.textField.addTarget(self, action: #selector(fullNameDidChange), for: .editingChanged)
             return cell
         case .phone:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfilePhoneNumberCell.identifier, for: indexPath) as? ProfilePhoneNumberCell else {
@@ -124,20 +131,26 @@ extension CreateContactViewController: UITableViewDataSource, UITableViewDelegat
 }
 
 extension CreateContactViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let indexPath = tableView.indexPathForRow(at: textField.convert(textField.bounds.origin, to: tableView)),
-              let row = Row(rawValue: indexPath.row) else { return }
-
-        switch row {
-        case .fullName:
-            viewModel.fullName = textField.text ?? ""
-        case .phone:
-            // This is handled by phoneNumberDidChange(_:)
-            break
-        }
+    
+    @objc private func fullNameDidChange(_ textField: UITextField) {
+        viewModel.fullName = textField.text ?? ""
+        updateSaveButton()
     }
 
     @objc private func phoneNumberDidChange(_ textField: PhoneNumberTextField) {
         viewModel.phoneNumber = textField.text ?? ""
+        updateSaveButton()
+    }
+    
+    private func updateSaveButton() {
+        navigationItem.rightBarButtonItem?.isEnabled = viewModel.isContactValid
     }
 }
+
+
+
+
+
+
+
+

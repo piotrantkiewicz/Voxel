@@ -60,10 +60,13 @@ let package = Package(
             name: "VoxelContacts",
             dependencies: [
                 "DesignSystem",
+                "VoxelAuthentication",
                 "VoxelCore",
                 "Swinject",
                 "SnapKit",
-                "PhoneNumberKit"
+                "PhoneNumberKit",
+                .product(name: "FirebaseAuth", package: "firebase-ios-sdk"),
+                .product(name: "FirebaseDatabase", package: "firebase-ios-sdk"),
             ]
         ),
         

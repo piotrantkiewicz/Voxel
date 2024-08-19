@@ -34,7 +34,7 @@ class AppAssembly {
         }
         
         container.register(ContactsRepository.self) { _ in
-            ContactsRepositoryFake()
+            ContactsRepositoryLive(container: self.container)
         }
     }
 }
