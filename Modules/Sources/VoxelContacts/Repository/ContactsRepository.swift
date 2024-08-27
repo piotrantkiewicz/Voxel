@@ -20,6 +20,8 @@ enum ContactsRepositoryError: Error {
 public protocol ContactsRepository {
     func fetch() async throws -> [Contact]
     func addContact(withPhoneNumber phoneNumber: String, fullName: String) async throws
+    func updateContact(_ contact: Contact, with fullName: String) async throws
+    func fetchContact(with uid: String) async throws -> Contact
 }
 
 public struct ContactRelationship: Decodable {
@@ -57,7 +59,7 @@ public class ContactsRepositoryLive: ContactsRepository {
         try await withThrowingTaskGroup(of: Contact.self) { [unowned self] group in
             for (contactsUid, contactRel) in contacts {
                 group.addTask{
-                    let profile = try await self.fetchContact(with: contactsUid)
+                    let profile = try await self.fetchProfile(with: contactsUid)
                     return Contact(
                         uid: contactsUid,
                         name: contactRel.name,
@@ -74,9 +76,21 @@ public class ContactsRepositoryLive: ContactsRepository {
         return contactsArray
     }
     
-    private func fetchContact(with uid: String) async throws -> UserProfile {
+    private func fetchProfile(with uid: String) async throws -> UserProfile {
         let snapshot = try await usersReference.child(uid).getData()
         return try snapshot.data(as: UserProfile.self)
+    }
+    
+    public func fetchContact(with uid: String) async throws -> Contact {
+        guard let user = authService.user else {
+            throw AuthError.notAuthenticated
+        }
+        
+        let profile = try await fetchProfile(with: uid)
+        let snapshot = try await reference.child(user.uid).child(uid).getData()
+        let contactRel = try snapshot.data(as: ContactRelationship.self)
+        
+        return Contact(uid: uid, name: contactRel.name, userProfile: profile)
     }
     
     public func addContact(withPhoneNumber phoneNumber: String, fullName: String) async throws {
@@ -93,6 +107,14 @@ public class ContactsRepositoryLive: ContactsRepository {
         try await reference.child(user.uid).child(contactUserId).setValue([
             "name": fullName
         ])
+    }
+    
+    public func updateContact(_ contact: Contact, with fullName: String) async throws {
+        guard let user = authService.user else {
+            throw AuthError.notAuthenticated
+        }
+        
+        try await reference.child(user.uid).child(contact.uid).child("name").setValue(fullName)
     }
 }
                                         

@@ -24,7 +24,8 @@ public final class ContactInfoCoordinatorLive: ContactInfoCoordinator {
     public func start() {
         let viewModel = ContactInfoViewModel(
             contact: contact,
-            coordinator: self
+            coordinator: self,
+            container: container
         )
         let controller = ContactInfoViewController()
         controller.viewModel = viewModel

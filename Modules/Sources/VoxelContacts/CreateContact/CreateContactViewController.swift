@@ -116,6 +116,7 @@ extension CreateContactViewController: UITableViewDataSource, UITableViewDelegat
                 header: "PHONE",
                 text: viewModel.phoneNumber
             ))
+            cell.textField.isEnabled = viewModel.mode == .create
             cell.textField.addTarget(self, action: #selector(phoneNumberDidChange(_:)), for: .editingChanged)
             return cell
         }

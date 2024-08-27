@@ -67,6 +67,8 @@ public class CreateContactViewModel {
     
     private func updateContact(_ contact: Contact) async throws {
         
+        try await repository.updateContact(contact, with: fullName)
+        
         await MainActor.run {
             coordinator.dismiss()
         }

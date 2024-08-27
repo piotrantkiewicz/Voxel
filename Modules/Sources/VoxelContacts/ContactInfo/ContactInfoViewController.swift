@@ -12,6 +12,22 @@ class ContactInfoViewController: UIViewController {
         configureTableView()
         updateUI()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchContact()
+    }
+    
+    private func fetchContact() {
+        Task {
+            do {
+                try await viewModel.fetch()
+                tableView.reloadData()
+            } catch {
+                showError(error.localizedDescription)
+            }
+        }
+    }
 
     private func setupUI() {
         view.backgroundColor = .background
