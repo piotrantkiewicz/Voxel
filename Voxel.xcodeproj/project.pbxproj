@@ -29,8 +29,8 @@
 		6691505E2C26CA85002061CA /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6691505D2C26CA85002061CA /* FirebaseAuth */; };
 		66B554C82C49549A007ED570 /* AppCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B554C72C49549A007ED570 /* AppCoordinatorTests.swift */; };
 		66B554D02C4957E4007ED570 /* AuthServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B554CF2C4957E4007ED570 /* AuthServiceMock.swift */; };
+		AE30D6F52C7E05B2008F3B0C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE30D6F42C7E05B2008F3B0C /* GoogleService-Info.plist */; };
 		AEC7CEC62C72565900F0E5B6 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = AEC7CEC52C72565900F0E5B6 /* Swinject */; };
-		AEC7CEC82C7256A100F0E5B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEC7CEC72C7256A100F0E5B6 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,7 @@
 		66B554C72C49549A007ED570 /* AppCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinatorTests.swift; sourceTree = "<group>"; };
 		66B554CF2C4957E4007ED570 /* AuthServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceMock.swift; sourceTree = "<group>"; };
 		66B554D12C495949007ED570 /* Voxel.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Voxel.xctestplan; sourceTree = SOURCE_ROOT; };
-		AEC7CEC72C7256A100F0E5B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AE30D6F42C7E05B2008F3B0C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,8 +130,8 @@
 				669150342C257C31002061CA /* AppDelegate.swift */,
 				669150362C257C31002061CA /* SceneDelegate.swift */,
 				6691503F2C257C33002061CA /* LaunchScreen.storyboard */,
-				AEC7CEC72C7256A100F0E5B6 /* GoogleService-Info.plist */,
 				669150422C257C33002061CA /* Info.plist */,
+				AE30D6F42C7E05B2008F3B0C /* GoogleService-Info.plist */,
 				664E406F2C36DB980037110D /* AppAssembly.swift */,
 				665D52B52C47E46E0048754B /* AppCoordinator.swift */,
 			);
@@ -287,7 +287,7 @@
 				669150552C25AE6F002061CA /* IBMPlexSans-SemiBold.ttf in Resources */,
 				6691504F2C259C82002061CA /* IBMPlexSerif-Bold.ttf in Resources */,
 				669150412C257C33002061CA /* Base in Resources */,
-				AEC7CEC82C7256A100F0E5B6 /* GoogleService-Info.plist in Resources */,
+				AE30D6F52C7E05B2008F3B0C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +472,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2M6MHP35YD;
+				DEVELOPMENT_TEAM = J7US55UYJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Voxel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -484,7 +484,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobileappcoaching.voxel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.piotrantkiewicz.Voxel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -501,7 +501,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 2M6MHP35YD;
+				DEVELOPMENT_TEAM = J7US55UYJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Voxel/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -513,7 +513,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mobileappcoaching.voxel;
+				PRODUCT_BUNDLE_IDENTIFIER = com.piotrantkiewicz.Voxel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

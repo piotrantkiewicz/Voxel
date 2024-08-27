@@ -3,7 +3,7 @@ import FirebaseDatabase
 import VoxelAuthentication
 
 public struct UserProfile: Codable {
-    public let phoneNumber: String
+    public let phoneNumber: String?
     public let fullName: String?
     public let description: String?
     public let profilePictureUrl: URL?

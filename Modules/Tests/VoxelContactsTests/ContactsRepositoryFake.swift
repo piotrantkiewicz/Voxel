@@ -1,6 +1,11 @@
 import UIKit
+import VoxelContacts
 
 public final class ContactsRepositoryFake: ContactsRepository {
+    public func addContact(withPhoneNumber phoneNumber: String, fullName: String) async throws {
+
+    }
+    
     
     public init() {}
     

@@ -9,6 +9,14 @@ public struct Contact {
     public let isOnline: Bool
     public let firstLetter: String
     public let phoneNumber: String
+    
+    public init(name: String, image: UIImage?, isOnline: Bool, firstLetter: String, phoneNumber: String) {
+        self.name = name
+        self.image = image
+        self.isOnline = isOnline
+        self.firstLetter = firstLetter
+        self.phoneNumber = phoneNumber
+    }
 }
 
 enum ContactsRepositoryError: Error {
