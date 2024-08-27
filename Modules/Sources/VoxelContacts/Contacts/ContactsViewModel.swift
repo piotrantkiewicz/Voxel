@@ -49,7 +49,7 @@ public final class ContactsViewModel {
     }
 
     private func updateContacts(with contacts: [Contact]) {
-        self.contacts = Dictionary(grouping: contacts, by: { $0.firstLetter })
+        self.contacts = Dictionary(grouping: contacts, by: { $0.name.first.map { String($0) } ?? "A" })
         sectionTitles = self.contacts.keys.sorted()
     }
 

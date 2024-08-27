@@ -62,7 +62,7 @@ class ContactCell: UITableViewCell {
     }
 
     func configure(with contact: Contact) {
-        profileImageView.image = contact.image ?? .avatar
+        profileImageView.image = .avatar
         nameLabel.text = contact.name
     }
 

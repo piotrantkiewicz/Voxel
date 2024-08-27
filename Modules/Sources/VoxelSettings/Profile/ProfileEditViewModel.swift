@@ -51,7 +51,9 @@ public final class ProfileEditViewModel {
             try await profilePictureRepository.upload(selectedImage)
         }
 
-        coordinator.dismiss()
+        await MainActor.run {
+            coordinator.dismiss()
+        }
     }
 
     func logout() throws {
