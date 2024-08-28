@@ -18,7 +18,7 @@ extension UserProfileRepositoryError: LocalizedError {
 public protocol UserProfileRepository {
     var profile: UserProfile? { get }
 
-    func saveUserProfile(_ userProfile: UserProfile) throws
+    func saveUserProfile(_ fullname: String, description: String) throws
     func fetchUserProfile() async throws -> UserProfile
     func saveProfilePictureUrl(_ url: URL) throws
 }
@@ -35,14 +35,14 @@ public class UserProfileRepositoryLive: UserProfileRepository {
         self.authService = authService
     }
 
-    public func saveUserProfile(_ userProfile: UserProfile) throws {
+    public func saveUserProfile(_ fullName: String, description: String) throws {
         guard let user = authService.user else {
             throw UserProfileRepositoryError.notAuthenticated
         }
 
-        reference.child("users").child(user.uid).setValue([
-            "fullName": userProfile.fullName,
-            "description": userProfile.description
+        reference.child("users").child(user.uid).updateChildValues([
+            "fullName": fullName,
+            "description": description
         ])
     }
 

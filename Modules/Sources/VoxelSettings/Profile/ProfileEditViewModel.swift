@@ -39,13 +39,7 @@ public final class ProfileEditViewModel {
     }
 
     func save() async throws {
-        let profile = UserProfile(
-            phoneNumber: "",
-            fullName: fullName,
-            description: description
-        )
-        
-        try userRepository.saveUserProfile(profile)
+        try userRepository.saveUserProfile(fullName, description: description)
 
         if let selectedImage {
             try await profilePictureRepository.upload(selectedImage)

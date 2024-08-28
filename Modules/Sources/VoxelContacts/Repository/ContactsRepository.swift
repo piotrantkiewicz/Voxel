@@ -4,15 +4,6 @@ import VoxelAuthentication
 import VoxelSettings
 import Swinject
 
-public struct Contact {
-    public let uid: String
-    public let name: String
-    public var phoneNumber: String {
-        userProfile.phoneNumber
-    }
-    public let userProfile: UserProfile
-}
-
 enum ContactsRepositoryError: Error {
     case contactNotRegistered
 }
@@ -33,16 +24,13 @@ public class ContactsRepositoryLive: ContactsRepository {
     private let reference: DatabaseReference
     private let phoneNumberReference: DatabaseReference
     private let usersReference: DatabaseReference
-    private let container: Container
-    private var authService: AuthService {
-        container.resolve(AuthService.self)!
-    }
+    private let authService: AuthService
     
     public init(container: Container) {
-        self.container = container
         reference = Database.database().reference().child("contacts")
         phoneNumberReference = Database.database().reference().child(DatabaseBranch.phoneNumbers.rawValue)
         usersReference = Database.database().reference().child("users")
+        authService = container.resolve(AuthService.self)!
     }
     
     public func fetch() async throws -> [Contact] {
@@ -60,10 +48,12 @@ public class ContactsRepositoryLive: ContactsRepository {
             for (contactsUid, contactRel) in contacts {
                 group.addTask{
                     let profile = try await self.fetchProfile(with: contactsUid)
+                    let isMutual = try await self.isContactMutual(contactsUid)
                     return Contact(
                         uid: contactsUid,
                         name: contactRel.name,
-                        userProfile: profile
+                        userProfile: profile,
+                        isMutual: isMutual
                     )
                 }
             }
@@ -89,8 +79,23 @@ public class ContactsRepositoryLive: ContactsRepository {
         let profile = try await fetchProfile(with: uid)
         let snapshot = try await reference.child(user.uid).child(uid).getData()
         let contactRel = try snapshot.data(as: ContactRelationship.self)
+        let isMutual = try await isContactMutual(uid)
         
-        return Contact(uid: uid, name: contactRel.name, userProfile: profile)
+        return Contact(
+            uid: uid,
+            name: contactRel.name,
+            userProfile: profile,
+            isMutual: isMutual
+        )
+    }
+    
+    private func isContactMutual(_ uid: String) async throws -> Bool{
+        guard let user = authService.user else {
+            throw AuthError.notAuthenticated
+        }
+        
+        let snapshot = try await reference.child(uid).child(user.uid).getData()
+        return snapshot.exists()
     }
     
     public func addContact(withPhoneNumber phoneNumber: String, fullName: String) async throws {

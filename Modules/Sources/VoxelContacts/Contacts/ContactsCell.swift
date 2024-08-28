@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 import DesignSystem
 import VoxelCore
+import SDWebImage
 
 class ContactCell: UITableViewCell {
 
@@ -49,8 +50,7 @@ class ContactCell: UITableViewCell {
 
         profileImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(40)
+            make.width.equalTo(profileImageView.snp.height)
             make.top.equalToSuperview().offset(8)
             make.bottom.equalToSuperview().offset(-8)
         }
@@ -62,10 +62,21 @@ class ContactCell: UITableViewCell {
     }
 
     func configure(with contact: Contact) {
-        profileImageView.image = .avatar
         nameLabel.text = contact.name
+        
+        profileImageView.image = .avatar
+        
+        if let url = contact.profilePictureUrl {
+            profileImageView.sd_setImage(with: url)
+        }
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        profileImageView.sd_cancelCurrentImageLoad()
+    }
+    
     func configureCellCorners(corners: UIRectCorner) {
         containerView.layer.cornerRadius = 10
         containerView.setMaskedCorners(corners)

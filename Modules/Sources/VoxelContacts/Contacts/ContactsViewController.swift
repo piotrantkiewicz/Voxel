@@ -39,6 +39,7 @@ class ContactsViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.sectionHeaderTopPadding = 0
         tableView.backgroundColor = .background
+        tableView.rowHeight = 56
     }
 
     private func loadContacts() {

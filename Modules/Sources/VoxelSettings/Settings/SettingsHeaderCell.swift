@@ -22,7 +22,10 @@ class SettingsHeaderCell: UITableViewCell {
     }
 
     func configure(with viewModel: SettingsViewModel.Header) {
-        profileImageView.sd_setImage(with: viewModel.imageUrl)
+        profileImageView.sd_setImage(
+            with: viewModel.imageUrl,
+            placeholderImage: .avatar
+        )
         nameLbl.text = viewModel.name
         descriptionLbl.text = viewModel.description
     }

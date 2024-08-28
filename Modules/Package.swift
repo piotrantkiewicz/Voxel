@@ -63,6 +63,7 @@ let package = Package(
                 "VoxelAuthentication",
                 "VoxelCore",
                 "VoxelSettings",
+                "SDWebImage",
                 "Swinject",
                 "SnapKit",
                 "PhoneNumberKit",

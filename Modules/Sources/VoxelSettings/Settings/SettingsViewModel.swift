@@ -2,6 +2,11 @@ import UIKit
 import VoxelAuthentication
 import Swinject
 
+enum SettingsStrings: String {
+    case placeholderName = "~"
+    case placeholderDescription = "No description"
+}
+
 public final class SettingsViewModel {
 
     struct Header {
@@ -30,8 +35,8 @@ public final class SettingsViewModel {
 
         header = Header(
             imageUrl: nil,
-            name: "~",
-            description: "No description"
+            name: SettingsStrings.placeholderName.rawValue,
+            description: SettingsStrings.placeholderDescription.rawValue
         )
     }
 
@@ -57,14 +62,16 @@ public final class SettingsViewModel {
     private func updateHeader(with userProfile: UserProfile) {
         header = Header(
             imageUrl: userProfile.profilePictureUrl,
-            name: userProfile.fullName ?? "",
-            description: userProfile.description ?? ""
+            name: userProfile.fullName?.nillIfEmpty ?? SettingsStrings.placeholderName.rawValue,
+            description: userProfile.description?.nillIfEmpty ?? SettingsStrings.placeholderDescription.rawValue
         )
 
         didUpdateHeader?()
     }
 }
 
-
-
-
+extension String {
+    var nillIfEmpty: String? {
+        isEmpty ? nil : self
+    }
+}
